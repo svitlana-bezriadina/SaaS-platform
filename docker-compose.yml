@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: petcloud_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: "2321919458"
+      POSTGRES_DB: petcloud
+    ports:
+      - "5435:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  auth_service:
+    build: ./backend/auth_service
+    container_name: auth_service
+    environment:
+      - DATABASE_URL=postgresql://admin:2321919458@db:5432/petcloud
+    volumes:
+      - ./backend/auth_service:/app
+    ports:
+      - "8001:8001"
+
+  animal_service:
+    build: ./backend/animal_service
+    environment:
+      - DATABASE_URL=postgresql://admin:2321919458@db:5432/petcloud
+      - CLOUDINARY_CLOUD_NAME=dch8ds88n
+      - CLOUDINARY_API_KEY=673222251816184
+      - CLOUDINARY_API_SECRET=QYYhCDMKy-w3AUQLkr2rsfNS0Dw
+    container_name: animal_service
+    volumes:
+      - ./backend/animal_service:/app
+    depends_on:
+      - db
+    ports:
+      - "8002:8002"
+
+  booking_service:
+    build: ./backend/booking_service
+    environment:
+      - DATABASE_URL=postgresql://admin:2321919458@db:5432/petcloud
+      - CLOUDINARY_CLOUD_NAME=dch8ds88n
+      - CLOUDINARY_API_KEY=673222251816184
+      - CLOUDINARY_API_SECRET=QYYhCDMKy-w3AUQLkr2rsfNS0Dw
+    container_name: booking_service
+    volumes:
+      - ./backend/booking_service:/app
+    depends_on:
+      - db
+    ports:
+      - "8003:8003"
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    volumes:
+      - ./gateway:/app
+    depends_on:
+      - auth_service
+      - animal_service
+      - booking_service
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:80"
+
+volumes:
+  db_data:

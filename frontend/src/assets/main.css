@@ -1,0 +1,11 @@
+/* frontend/src/assets/main.css */
+@import './base.css';
+
+#app {
+  /* Важливо: прибираємо обмеження ширини */
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-weight: normal;
+}

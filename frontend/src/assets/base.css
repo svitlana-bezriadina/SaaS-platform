@@ -1,0 +1,275 @@
+:root {
+  /* === СВІТЛА ТЕМА (Сучасна, повітряна) === */
+  
+  /* Фони */
+  --bg-primary: #f8fafc; /* Дуже світлий сіро-синій для загального фону (не чисто білий!) */
+  --bg-secondary: #ffffff; /* Білий для карток, модалок та блоків */
+  --bg-tertiary: #f1f5f9; /* Світло-сірий для наведення (hover) або плашок */
+
+  /* Текст */
+  --text-primary: #0f172a; /* Майже чорний для заголовків (добре читається) */
+  --text-secondary: #64748b; /* М'який сірий для підписів та дат */
+
+  /* Акценти (Бренд) */
+  --accent-primary: #1677ff; /* Класичний синій Ant Design */
+  --accent-hover: #4096ff; /* Світліший синій для кнопок при наведенні */
+
+  /* Статуси */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Бордери (Межі) та Тіні */
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  /* Compatibility aliases for component theme variables */
+  --color-background-soft: var(--bg-secondary);
+  --color-background-mute: var(--bg-tertiary);
+  --color-surface: var(--bg-tertiary);
+  --color-card-background: var(--bg-secondary);
+  --color-text: var(--text-primary);
+  --color-heading: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-border: var(--border-color);
+  --color-shadow: var(--shadow-sm);
+  --color-border-hover: rgba(226, 232, 240, 0.75);
+  --accent-secondary: #4F46E5;
+  --bg-success: rgba(16, 185, 129, 0.12);
+  --bg-warning: rgba(251, 191, 36, 0.12);
+  --bg-danger: rgba(239, 68, 68, 0.12);
+  --bg-info: rgba(59, 130, 246, 0.12);
+}
+
+[data-theme='dark'] {
+  /* === ТЕМНА ТЕМА (Глибока, не ріже очі) === */
+  
+  /* Фони (Ніколи не використовуй #000000, краще темний Slate) */
+  --bg-primary: #0f172a; /* Головний фон програми */
+  --bg-secondary: #1e293b; /* Фон для карток, сайдбару, меню */
+  --bg-tertiary: #334155; /* Фон для виділених рядків або кнопок */
+
+  /* Текст */
+  --text-primary: #f8fafc; /* М'який білий текст */
+  --text-secondary: #94a3b8; /* Приємний світло-сірий для підписів */
+
+  /* Акценти */
+  --accent-primary: #3b82f6; /* Трохи світліший синій, щоб краще світився на темному */
+  --accent-hover: #60a5fa;
+
+  /* Статуси (трохи м'якші для темного фону) */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+
+  /* Бордери та Тіні */
+  --border-color: #334155;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+
+  /* Compatibility aliases for component theme variables */
+  --color-background-soft: var(--bg-secondary);
+  --color-background-mute: var(--bg-tertiary);
+  --color-surface: var(--bg-tertiary);
+  --color-card-background: var(--bg-secondary);
+  --color-text: var(--text-primary);
+  --color-heading: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-border: var(--border-color);
+  --color-shadow: var(--shadow-sm);
+  --color-border-hover: rgba(255, 255, 255, 0.08);
+  --accent-secondary: #4F46E5;
+  --bg-success: rgba(52, 211, 153, 0.16);
+  --bg-warning: rgba(251, 191, 36, 0.16);
+  --bg-danger: rgba(248, 113, 113, 0.16);
+  --bg-info: rgba(59, 130, 246, 0.16);
+}
+
+/* =========================================
+   БАЗОВІ СТИЛІ HTML
+========================================= */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* =========================================
+   ГЛОБАЛЬНІ КЛАСИ (можеш юзати будь-де)
+========================================= */
+.card {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* =========================================
+   ФІКС ДЛЯ ANT DESIGN VUE У ТЕМНІЙ ТЕМІ
+========================================= */
+/* Ant Design не слухає body, тому ми примусово фарбуємо його компоненти в наші змінні */
+
+[data-theme='dark'] .ant-card,
+[data-theme='dark'] .ant-modal-content,
+[data-theme='dark'] .ant-modal-header,
+[data-theme='dark'] .ant-drawer-content,
+[data-theme='dark'] .ant-drawer-header {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme='dark'] .ant-modal-title,
+[data-theme='dark'] .ant-drawer-title {
+  color: var(--text-primary) !important;
+}
+
+/* Стилізація таблиць Ant Design для темної теми */
+[data-theme='dark'] .ant-table {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-table-thead > tr > th {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+[data-theme='dark'] .ant-table-tbody > tr.ant-table-row:hover > td {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Форми та інпути */
+[data-theme='dark'] .ant-input,
+[data-theme='dark'] .ant-input-password,
+[data-theme='dark'] .ant-select-selector {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme='dark'] .ant-form-item-label > label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme='dark'] .ant-empty-description {
+  color: var(--text-secondary) !important;
+}
+
+/* =========================================
+   РОЗШИРЕНИЙ ФІКС ДЛЯ ANT DESIGN (ТЕМНА ТЕМА)
+========================================= */
+
+/* 1. Головний Layout (Шапка, Сайдбар, Загальний фон) */
+[data-theme='dark'] .ant-layout,
+[data-theme='dark'] .ant-layout-sider,
+[data-theme='dark'] .ant-layout-header {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme='dark'] .ant-layout-sider {
+  border-right: 1px solid var(--border-color) !important;
+}
+
+/* 2. Бокове меню навігації */
+[data-theme='dark'] .ant-menu,
+[data-theme='dark'] .ant-menu-sub {
+  background-color: transparent !important;
+  color: var(--text-secondary) !important;
+  border-right: none !important;
+}
+
+[data-theme='dark'] .ant-menu-item:hover,
+[data-theme='dark'] .ant-menu-submenu-title:hover {
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-menu-item-selected {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--accent-hover) !important;
+}
+
+/* 3. Пагінація (номери сторінок під таблицею) */
+[data-theme='dark'] .ant-pagination-item,
+[data-theme='dark'] .ant-pagination-item a,
+[data-theme='dark'] .ant-pagination-prev .ant-pagination-item-link,
+[data-theme='dark'] .ant-pagination-next .ant-pagination-item-link,
+[data-theme='dark'] .ant-pagination-item-active {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* 4. Випадаючі списки (Select) та Поповери */
+[data-theme='dark'] .ant-select-dropdown,
+[data-theme='dark'] .ant-dropdown-menu,
+[data-theme='dark'] .ant-popover-inner,
+[data-theme='dark'] .ant-popconfirm-inner {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+[data-theme='dark'] .ant-select-item-option-content,
+[data-theme='dark'] .ant-dropdown-menu-item {
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+[data-theme='dark'] .ant-dropdown-menu-item:hover {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* 5. Теги та Checkbox/Radio */
+[data-theme='dark'] .ant-tag {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme='dark'] .ant-checkbox-inner,
+[data-theme='dark'] .ant-radio-inner {
+  background-color: var(--bg-primary) !important;
+  border-color: var(--border-color) !important;
+}
